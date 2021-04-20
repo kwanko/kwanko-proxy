@@ -25,7 +25,7 @@ backend bk_kwanko_tracking
     #http-request set-header X-Forwarded-For %[src] # uncomment if directly exposed or behind a L4 load balancer
     http-request lua.filter_kwanko_cookies
     http-response lua.filter_kwanko_set_cookies
-    server kwanko action.metaffiliation.com:443 ssl sni str(action.metaffiliation.com) verify required verifyhost str(action.metaffiliation.com) ca-file /etc/ssl/certs/ca-certificates.crt # the location of the ca-certificates public CAs depends on the distribution
+    server kwanko action.metaffiliation.com:443 no-check no-check-ssl ssl sni str(action.metaffiliation.com) verify required verifyhost str(action.metaffiliation.com) ca-file /etc/ssl/certs/ca-certificates.crt # the location of the ca-certificates public CAs depends on the distribution
 ```
 
 The cookie filtering is done in LUA by two custom actions defined in [filter\_kwanko\_cookies.lua](./filter_kwanko_cookies.lua):

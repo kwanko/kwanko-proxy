@@ -64,4 +64,4 @@ backend kwanko_tracking
 {%- endif %}
     http-request lua.filter_kwanko_cookies
     http-response lua.filter_kwanko_set_cookies
-    server kwanko action.metaffiliation.com:443 ssl sni str(action.metaffiliation.com) verify {% if env["KWANKO_PROXY_INSECURE"]|default("False") in ["True", "true", "yes"] %}none{% else %}required{% endif %} verifyhost str(action.metaffiliation.com) ca-file /etc/ssl/certs/ca-certificates.crt
+    server kwanko action.metaffiliation.com:443 no-check no-check-ssl ssl sni str(action.metaffiliation.com) verify {% if env["KWANKO_PROXY_INSECURE"]|default("False") in ["True", "true", "yes"] %}none{% else %}required{% endif %} verifyhost str(action.metaffiliation.com) ca-file /etc/ssl/certs/ca-certificates.crt
